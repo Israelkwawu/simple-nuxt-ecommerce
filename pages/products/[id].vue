@@ -1,5 +1,9 @@
 <template>
     <div>
+        <head>
+            <title>Nuxt Dojo | {{ product.title }}</title>
+            <Meta name="description" :content="product.description"/>
+        </head>
         <product-details :product="product"></product-details>
     </div>
 </template>
@@ -12,6 +16,7 @@ definePageMeta({
 
 const uri = 'https://fakestoreapi.com/products/'+id
 const { data: product } = await useFetch(uri, {key: id})
+
 if(!product.value) {
     throw createError({
         statusCode: 404,
